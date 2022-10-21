@@ -4,42 +4,50 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    Enemy bob, alice; // declare bob and alice
+    public GameObject prefab1, prefab2;
+    GameObject bob, alice; // declare bob and alice
     int playerHP = 10; //This is our hp
-    void Start()
+    void Awake()
     {
-        bob = new Enemy(5, 2, "Bob");
-        //Bob has 5 hp, 2 damage, and a name of Bob
-        alice = new Enemy(2, 5, "Alice");
-        //Alice has 2 hp, 5 damage, and a name of Alice
+        bob = Instantiate(prefab1, new Vector3(-3f, 0f, 0f), Quaternion.identity);
+        alice = Instantiate(prefab2, new Vector3(3f, 0f, 0f), Quaternion.identity);
+        
+        bob.GetComponent<Enemy>().hitpoints = 5;
+        bob.GetComponent<Enemy>().damage = 2;
+        bob.GetComponent<Enemy>().enemyname = "Bob";
+
+        alice.GetComponent<Enemy>().hitpoints = 2;
+        alice.GetComponent<Enemy>().damage = 5;
+        alice.GetComponent<Enemy>().enemyname = "Alice";
+
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
             //Bob takes damage if Spacebar is pressed
-            bob.TakeDamage();
+            bob.GetComponent<Enemy>().TakeDamage();
         else if (Input.GetKeyDown(KeyCode.LeftShift))
             //Alice takes damage if left shift is pressed
-            alice.TakeDamage();
+            alice.GetComponent<Enemy>().TakeDamage();
         else if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             //Player takes damage from bob if left control is pressed
-            playerHP -= bob.damage;
+            playerHP -= bob.GetComponent<Enemy>().damage;
             Debug.Log("Player HP: " + playerHP);
         }
         else if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
             //Player takes damage from alice if left alt is pressed
-            playerHP -= alice.damage;
+            playerHP -= alice.GetComponent<Enemy>().damage;
             Debug.Log("Player HP: " + playerHP);
         }
 
-        if (bob.hitpoints < 1)
+        if (bob.GetComponent<Enemy>().hitpoints < 1)
             //if bob's hp is under 1, he dies
-            bob.Die();
-        if (alice.hitpoints < 1)
+            bob.GetComponent<Enemy>().Die();
+        if (alice.GetComponent<Enemy>().hitpoints < 1)
             //if alice's hp is under 1, she dies
-            alice.Die();
+            alice.GetComponent<Enemy>().Die();
         if (playerHP < 1)
             //if our hp is under 1, we die
             Debug.Log("You Died!");
