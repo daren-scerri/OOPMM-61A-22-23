@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
+
 
 public class Rotating_Cannon : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class Rotating_Cannon : MonoBehaviour
     Quaternion newrotation;
 
     Quaternion clampRotationLow, clampRotationHigh;
+
+    public GameObject bullet1prefab;
+    public Transform fireposition;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +26,7 @@ public class Rotating_Cannon : MonoBehaviour
     void Update()
     {
         PointAtMouse();
+        BulletFiring();
     }
 
     void PointAtMouse()
@@ -35,5 +41,15 @@ public class Rotating_Cannon : MonoBehaviour
         this.transform.rotation = Quaternion.Slerp(this.transform.rotation, newrotation, Time.deltaTime * 3f);
         //this.transform.rotation = newrotation;
     }
+
+
+    void BulletFiring()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("Fire1"))
+        {
+            Instantiate(bullet1prefab, fireposition.position, Quaternion.identity);
+        }
+    }
+
 
 }
