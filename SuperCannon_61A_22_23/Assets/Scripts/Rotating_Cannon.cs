@@ -31,8 +31,7 @@ public class Rotating_Cannon : MonoBehaviour
 
     void PointAtMouse()
     {
-        mousePoint3D = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.back * Camera.main.transform.position.z);
-        Debug.Log(mousePoint3D);
+        mousePoint3D = GameData.MousePos;
         newrotation = Quaternion.LookRotation(transform.position - mousePoint3D, Vector3.forward);
         newrotation.x = 0;
         newrotation.y = 0;

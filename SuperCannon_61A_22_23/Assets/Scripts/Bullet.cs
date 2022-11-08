@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour   //the code down here applies to all types 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        mousePoint3D = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.back * Camera.main.transform.position.z);
+        mousePoint3D = GameData.GetMousePos();
         Vector2 direction = new Vector2(mousePoint3D.x, mousePoint3D.y + 5f);
         direction.Normalize();
         GetComponent<Rigidbody2D>().velocity = direction * speed;
