@@ -5,12 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour   //the code down here applies to all types of bullets
 {
-    public float speed=5;
+    [SerializeField] protected float speed=0;
     Vector3 mousePoint3D;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         mousePoint3D = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.back * Camera.main.transform.position.z);
         Vector2 direction = new Vector2(mousePoint3D.x, mousePoint3D.y + 5f);
@@ -18,10 +18,10 @@ public class Bullet : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = direction * speed;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnBecameInvisible()
     {
-        
-    
+        Destroy(this.gameObject);
     }
+
+
 }

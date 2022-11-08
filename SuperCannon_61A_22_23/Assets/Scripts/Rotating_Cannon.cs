@@ -11,7 +11,7 @@ public class Rotating_Cannon : MonoBehaviour
 
     Quaternion clampRotationLow, clampRotationHigh;
 
-    public GameObject bullet1prefab;
+    public GameObject bullet1prefab, bullet2prefab;
   //  public Transform fireposition;
     // Start is called before the first frame update
     void Start()
@@ -49,6 +49,12 @@ public class Rotating_Cannon : MonoBehaviour
         {
             Instantiate(bullet1prefab, this.gameObject.transform.GetChild(0).position, Quaternion.identity);
         }
+
+        if (CrossPlatformInputManager.GetButtonDown("Fire2"))
+        {
+            Instantiate(bullet2prefab, this.gameObject.transform.GetChild(0).position, Quaternion.identity);
+        }
+
     }
 
 
