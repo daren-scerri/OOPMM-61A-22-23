@@ -46,11 +46,23 @@ public class Rotating_Cannon : MonoBehaviour
     {
         if (CrossPlatformInputManager.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet1prefab, this.gameObject.transform.GetChild(0).position, Quaternion.identity);
+            GameObject smallbullet = MultiObjectPool.SharedInstance.GetPooledObject("SmallBullet");
+            if (smallbullet!=null)
+            {
+                smallbullet.transform.position = this.gameObject.transform.GetChild(0).position;
+                smallbullet.SetActive(true);
+            }
+           // Instantiate(bullet1prefab, this.gameObject.transform.GetChild(0).position, Quaternion.identity);
         }
 
         if (CrossPlatformInputManager.GetButtonDown("Fire2"))
         {
+            GameObject largebullet = MultiObjectPool.SharedInstance.GetPooledObject("LargeBullet");
+            if (largebullet != null)
+            {
+                largebullet.transform.position = this.gameObject.transform.GetChild(0).position;
+                largebullet.SetActive(true);
+            } 
             Instantiate(bullet2prefab, this.gameObject.transform.GetChild(0).position, Quaternion.identity);
         }
 
