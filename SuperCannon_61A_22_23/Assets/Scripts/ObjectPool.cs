@@ -5,13 +5,13 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
 
-    public static ObjectPool SharedInstance;
+   // public static ObjectPool SharedInstance;
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public int amountToPool;
     void Awake()
     {
-        SharedInstance = this;
+      //  SharedInstance = this;
     }
     void Start()
     {
@@ -21,6 +21,7 @@ public class ObjectPool : MonoBehaviour
         {
             tmp = Instantiate(objectToPool);
             tmp.SetActive(false);
+            tmp.transform.SetParent(this.transform);
             pooledObjects.Add(tmp);
         }
     }
