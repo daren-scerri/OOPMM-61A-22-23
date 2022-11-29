@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetupScene : MonoBehaviour
+public class SetupScene : Singleton<SetupScene>
 {
 
     GameObject vertWallprefab, horizWallprefab;

@@ -4,7 +4,26 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner _instance;
+
     public List<EnemySO> enemySOList;
+
+
+    //SINGLETON PATTERN
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else if (_instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
