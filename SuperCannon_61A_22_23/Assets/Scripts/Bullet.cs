@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 
 
-public class Bullet : MonoBehaviour   //the code down here applies to all types of bullets
+public abstract class Bullet : MonoBehaviour   //the code down here applies to all types of bullets
 {
     [SerializeField] protected float speed=0;
     Vector3 mousePoint3D;
