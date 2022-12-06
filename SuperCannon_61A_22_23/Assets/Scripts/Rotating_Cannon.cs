@@ -12,6 +12,9 @@ public class Rotating_Cannon : MonoBehaviour
     Quaternion clampRotationLow, clampRotationHigh;
 
     public ObjectPool bullet1pool, bullet2pool;
+
+    private CannonFiring _firingInstance;
+
   //  public Transform fireposition;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +23,9 @@ public class Rotating_Cannon : MonoBehaviour
         Debug.Log(clampRotationLow);
         clampRotationHigh = Quaternion.Euler(0, 0, 70);
         Debug.Log(clampRotationHigh);
+
+        _firingInstance = GetComponentInChildren(typeof(CannonFiring)) as CannonFiring;
+
     }
 
     // Update is called once per frame
@@ -47,23 +53,15 @@ public class Rotating_Cannon : MonoBehaviour
         if (CrossPlatformInputManager.GetButtonDown("Fire1"))
         {
             GameObject smallbullet = bullet1pool.GetPooledObject();
-            if (smallbullet!=null)
-            {
-                smallbullet.transform.position = this.gameObject.transform.GetChild(0).position;
-                smallbullet.SetActive(true);
-            }
+            if (_firingInstance != null) _firingInstance.CannonFire(smallbullet);
            // Instantiate(bullet1prefab, this.gameObject.transform.GetChild(0).position, Quaternion.identity);
         }
 
         if (CrossPlatformInputManager.GetButtonDown("Fire2"))
         {
             GameObject largebullet = bullet2pool.GetPooledObject();
-            if (largebullet != null)
-            {
-                largebullet.transform.position = this.gameObject.transform.GetChild(0).position;
-                largebullet.SetActive(true);
-            } 
-            
+            if (_firingInstance != null) _firingInstance.CannonFire(largebullet);
+
         }
 
     }
