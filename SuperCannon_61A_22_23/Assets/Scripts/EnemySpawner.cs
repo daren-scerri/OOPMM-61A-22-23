@@ -37,7 +37,9 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             int enemychoice = Random.Range(0, enemySOList.Count);
-            Instantiate(enemySOList[enemychoice].enemyGO, new Vector3(Random.Range(GameData.XMin, GameData.XMax), GameData.YMax, 0), Quaternion.identity);
+            GameObject enemyInstance = Instantiate(enemySOList[enemychoice].enemyGO, new Vector3(Random.Range(GameData.XMin, GameData.XMax), GameData.YMax, 0), Quaternion.identity);
+            enemyInstance.GetComponent<Enemy>().startHealth = enemySOList[enemychoice].strength;
+            enemyInstance.GetComponent<Enemy>().scorevalue = enemySOList[enemychoice].scorevalue;
             yield return new WaitForSeconds(1);
         }
     }

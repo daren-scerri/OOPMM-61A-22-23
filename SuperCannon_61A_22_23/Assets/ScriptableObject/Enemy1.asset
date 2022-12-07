@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Enemy1
   m_EditorClassIdentifier: 
   enemyGO: {fileID: 8461063454634187640, guid: b0d639783d778484ea692edf76a285f1, type: 3}
-  scorevalue: 5
-  strength: 3
+  scorevalue: 10
+  strength: 2
   speed: 1

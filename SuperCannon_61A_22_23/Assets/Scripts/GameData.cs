@@ -4,6 +4,14 @@ using UnityEngine;
 
 public abstract class GameData : MonoBehaviour
 {
+    private static int _score = 0;
+
+
+    public static int Score
+    {
+        get { return _score; }
+        set { _score = value; }
+    }
     public static float XMin
     {
         get { return Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x; }
@@ -33,7 +41,7 @@ public abstract class GameData : MonoBehaviour
     private static Vector3 GetMousePos()
     {
         Vector3 mousePoint3D = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.back * Camera.main.transform.position.z);
-        Debug.Log(mousePoint3D);
+      //  Debug.Log(mousePoint3D);
         return mousePoint3D;
     }
  
