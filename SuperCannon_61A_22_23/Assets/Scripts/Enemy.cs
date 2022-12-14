@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
             health--;
             healthText.text = health.ToString();
             Debug.Log("Enemy health:" + health.ToString());
-            
+
             if (health <= 0)
             {
                 GameData.Score += scorevalue;
@@ -32,8 +32,15 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Game Score: " + GameData.Score.ToString());
                 Destroy(this.gameObject);
             }
-           
+
         }
-       
+
+
+        if (other.gameObject.name.Contains("Wall"))
+        {
+            GameData.PlayerHealth--;
+            Debug.Log("player health: " + GameData.PlayerHealth.ToString());
+            if (GameData.PlayerHealth <=0 ) GameManager.Instance.LoseGame();
+        }
     }
 }

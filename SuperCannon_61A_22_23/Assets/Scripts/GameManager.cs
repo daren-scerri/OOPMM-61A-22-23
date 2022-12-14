@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -13,6 +14,8 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(this.gameObject);
         GameData.Score = 0;
         DisplayScore();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+     
     }
 
     public void DisplayScore()
@@ -21,5 +24,19 @@ public class GameManager : Singleton<GameManager>
     }
 
 
+    public void LoseGame()
+    {
+        SceneManager.LoadScene("LoseScene");
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "LoseScene")
+        {
+            //  scoreText = GameObject.Find()
+            DisplayScore();
+            //DO WHAT YOU WANT IN LOSE SCENE
+        }
+    }
 
 }

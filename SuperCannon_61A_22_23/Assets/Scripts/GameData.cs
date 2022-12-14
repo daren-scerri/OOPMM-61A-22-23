@@ -5,13 +5,22 @@ using UnityEngine;
 public abstract class GameData : MonoBehaviour
 {
     private static int _score = 0;
-
+    private static int _playerhealth = 5;
 
     public static int Score
     {
         get { return _score; }
         set { _score = value; }
     }
+
+
+    public static int PlayerHealth
+    {
+        get { return _playerhealth; }
+        set { _playerhealth = value; }
+    }
+
+
     public static float XMin
     {
         get { return Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x; }
