@@ -33,7 +33,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (scene.name == "LoseScene")
         {
-            //  scoreText = GameObject.Find()
+            scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
             DisplayScore();
             //DO WHAT YOU WANT IN LOSE SCENE
         }
